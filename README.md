@@ -1,6 +1,6 @@
 # solar-demo
 
-> A Vue.js project
+> A simple demo used to emulate the trading of distributed energy(solar) on a private blockchain with SIMBA API. It allows to trade solar energy with 4 different users in 3 roles through a fake login. To make it simple, all users have hard coded Ethereum Accounts with enough Ethers. 
 
 ## Build Setup
 
@@ -27,5 +27,8 @@ npm run e2e
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-# SolarDemo
+## What you can find out from this demo
+
+1. How to use SIMBA API to post information to a private blockchain
+2. How to use SIMBA API to retreive information from a private blockchain
+3. How to use SIMBA API to query transcations from a private blockchain
