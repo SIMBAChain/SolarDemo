@@ -59,7 +59,7 @@
         </div>
 
         <div class="md-layout-item md-xlarge-size-60 md-large-size-60 md-medium-size-80 md-small-size-100 md-xsmall-size-100">
-          <md-table class="table" v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
+          <md-table class="table" v-model="searched" md-sort="name" md-sort-order="asc" md-fixed-header>
             <md-table-toolbar>
               <div class="md-toolbar-section-start">
                 <h2 class="md-title get-title">{{getUser().title}}'s Transactions</h2>
@@ -97,7 +97,7 @@
 
     <div v-if="getUser().title == 'Utility Representative'">
       <div class="md-layout-item md-xlarge-size-60 md-large-size-60 md-medium-size-80 md-small-size-100 md-xsmall-size-100">
-        <md-table class="table" v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
+        <md-table class="table" v-model="searched" md-sort="name" md-sort-order="asc" md-fixed-header>
           <md-table-toolbar>
             <div class="md-toolbar-section-start">
               <h2 class="md-title get-title">All Transactions</h2>
@@ -321,7 +321,7 @@ export default {
       let wallet = ethers.Wallet.fromMnemonic(this.getUser().key)
       let userId = wallet.address
       try {
-        simbaApi.getData('makeTxn/?userID_contains=' + userId + '&no_page=1/')
+        simbaApi.getData('makeTxn/?userID_contains=' + userId)
           .then(function (response) {
             self.loadingBar = false
             self.searched = response.data.results
@@ -348,11 +348,14 @@ export default {
       this.inReading = inReading
       this.outReading = outReading
       this.availableCredit = availableCredit
+      // This calculation is incorrect,
+      // it should not use the most recent 100 transactions to do the calculation
+      // but its ok for a demo
     },
     getAllTxns () {
       let self = this
       try {
-        simbaApi.getData('transaction/?noContractTxn=1&no_page=1/')
+        simbaApi.getData('transaction/?noContractTxn')
           .then(function (response) {
             self.loadingBar = false
             self.searched = response.data.results
@@ -436,6 +439,7 @@ export default {
       } else {
         outReading += num
       }
+      // This calculation might be incorrect
 
       let bodyFormData = new FormData()
       bodyFormData.append('from', address)
@@ -448,6 +452,7 @@ export default {
       bodyFormData.append('txnAmount', num)
       bodyFormData.append('txnCredit', credit)
       bodyFormData.append('creditRate', rate)
+      bodyFormData.append('assetId', 'usedToGenerateGraph,butYouCanIgnoreItAndFillWithAnything')
 
       let self = this
       try {
@@ -486,6 +491,9 @@ export default {
       this.meterInterval = setInterval(function () {
         self.randomNum()
       }, 10000)
+      // Notice that the second transaction might fail if the first transcation is not confirmed by the network.
+      // This applies to the transactions made with the same Ethereum Account(address)
+      // But its ok for a demo.
     },
     stopInterval () {
       this.meterInterval = null

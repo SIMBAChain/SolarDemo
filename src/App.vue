@@ -195,7 +195,7 @@
                 <md-list slot="md-expand">
                   <md-list-item href="https://cardemo.simbachain.com" target="_blank" @click="menuVisible = false" class="md-inset">Car Demo</md-list-item>
                   <md-list-item href="https://herodemo.simbachain.com" target="_blank" @click="menuVisible = false" class="md-inset">Hero Demo</md-list-item>
-                  <md-list-item href="https://cat.simbachain.com" target="_blank" @click="menuVisible = false" class="md-inset">Cat Demo</md-list-item>
+                  <md-list-item href="https://container.simbachain.com" target="_blank" @click="menuVisible = false" class="md-inset">Container Demo</md-list-item>
                 </md-list>
               </md-list-item>
             </md-list>
@@ -220,12 +220,6 @@
         </md-app-drawer>
 
         <md-app-content class="bg-color">
-          <!--div class="video-background">
-            <div class="video-foreground">
-              <iframe src="https://www.youtube.com/embed/mEqcala-NiE?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&playlist=qghQ5eKGcyE" frameborder="0" allowfullscreen>
-              </iframe>
-            </div>
-          </div-->
           <router-view class="conent">
           </router-view>
         </md-app-content>
